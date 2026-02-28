@@ -1,0 +1,126 @@
+/* Fond global sombre inspiré de la cover */
+body {
+  background: radial-gradient(
+    ellipse at center,          /* forme elliptique centrée */
+    #3a0000 0%,                 /* rouge sombre au centre */
+    #2a0000 30%,                /* transition progressive */
+    #100000 60%,                /* presque noir */
+    #000000 100%                /* noir absolu aux bords */
+  );
+  background-attachment: fixed; /* pour que le dégradé reste fixe au scroll (optionnel mais immersif) */
+  font-family: 'Libre Baskerville', serif;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+h1 {
+  color: #da8b14;          /* doré pour le nom */
+  font-size: 3em;
+  margin: 0.3em 0;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* glow subtil doré */
+}
+header p {
+  color: #c69b01;
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+/* Selecteur d'album */
+.album-selector {
+  margin: 25px 0;
+}
+label {
+  color: #d4af37;
+  font-weight: 700;
+}
+select {
+  background: #1a0000;     /* rouge-noir sombre */
+  color: #e8d9c5;
+  border: 1px solid #4a0000;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-family: 'Libre Baskerville', serif;
+}
+select:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+/* Cover album */
+#album-cover {
+  max-width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(74, 0, 0, 0.6); /* ombre rouge sombre */
+  border: 2px solid #4a0000;
+  transition: transform 0.3s ease;
+}
+#album-cover:hover {
+  transform: scale(1.03);
+}
+
+/* Waveform */
+#waveform {
+  background: #0f0000;     /* noir-rouge très sombre */
+  border-radius: 8px;
+  box-shadow: inset 0 0 20px rgba(74, 0, 0, 0.5);
+}
+
+/* Contrôles */
+.controls {
+  margin: 25px 0;
+}
+button#playPause {
+  background: #4a0000;     /* rouge sombre */
+  color: #d4af37;          /* doré pour le texte */
+  border: 1px solid #d4af37;
+  padding: 14px 32px;
+  font-size: 1.3em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+button#playPause:hover {
+  background: #5c0f0f;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+#current-track {
+  color: #d4af37;
+  font-size: 1.4em;
+  margin-left: 20px;
+}
+
+/* Playlist */
+#playlist {
+  max-width: 700px;
+  margin: 0 auto;
+}
+#playlist li {
+  background: #100000;
+  margin: 8px 0;
+  padding: 14px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  border-left: 4px solid #4a0000;
+  transition: all 0.25s;
+}
+#playlist li:hover {
+  background: #1a0000;
+  border-left-color: #d4af37;
+}
+#playlist li.playing {
+  background: #2a0000;
+  border-left-color: #d4af37;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(74, 0, 0, 0.7);
+}
+#playlist li span {
+  color: #a89f8f;
+  font-weight: bold;
+}
