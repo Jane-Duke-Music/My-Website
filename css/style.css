@@ -717,6 +717,15 @@ Playlist page
 	background: #fc0254;
 }
 
+#audiowave .wavesurfer-cursor {
+    box-shadow: 
+        0 0 8px  #7f1d1d,
+        0 0 15px #991b1b,
+        0 0 25px #b91c1c;
+    background-color: #000000 !important; /* la barre verticale elle-même */
+    width: 2px !important;
+}
+
 /* ----------------
 Blog page
  -------------------*/
