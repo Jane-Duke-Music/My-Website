@@ -44,7 +44,7 @@ renderPlaylist();
 // Et aussi à chaque changement de piste (dans loadTrack)
 function loadTrack(index) {
     // ... ton code existant ...
-    document.querySelector('.tarck-thumb img').src = track.cover || 'music/Jane_Duke/The-Origin-Of-Evil-MP3-Edition/The Origin Of Evil - The Legend Of Narcissus And Oedipus.png';
+    document.querySelector('.tarck-thumb img').src = track.cover || 'music/Jane_Duke/The-Origin-Of-Evil-MP3-Edition/Album-Cover.png';
     // Met à jour la classe "active" dans la playlist
     document.querySelectorAll('.playlist-item').forEach(el => {
         el.classList.remove('active');
