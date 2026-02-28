@@ -96,9 +96,9 @@
 
                 <!-- Contrôles -->
                 <div class="wavePlayer_controls">
-                    <button class="jp-prev player_button" onclick="wavesurfer.skipBackward();"></button>
-                    <button class="jp-play player_button" onclick="wavesurfer.playPause();"></button>
-                    <button class="jp-next player_button" onclick="wavesurfer.skipForward();"></button>
+					<button class="jp-prev player_button" onclick="prevTrack();"></button>                    
+					<button class="jp-play player_button" onclick="wavesurfer.playPause();"></button>
+                    <button class="jp-next player_button" onclick="nextTrack();"></button>
                     <button class="jp-stop player_button" onclick="wavesurfer.stop();"></button>
                 </div>
 
@@ -216,8 +216,7 @@
 		<!-- Audio Players js -->
 		<script src="js/wavesurfer.min.js"></script>
     	<!-- Audio Players Initialization -->
-    	<script src="js/WaveSurferInit.js"></script>
+    	<script type="module" src="js/WaveSurferInit.js"></script>
     	<!-- Playlists js -->
-    	<script src="js/playlists.js"></script>
 	</body>
 </html>
