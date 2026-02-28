@@ -24,25 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentAlbumEl) currentAlbumEl.textContent = playlist[0].album;
 
     // Quand un track finit → passe au suivant
-    wavesurfer.on('finish', function () {
-        const currentSrc = wavesurfer.backend.media.src;
-        const currentIndex = playlist.findIndex(t => t.src === currentSrc);
+    // === Auto next track quand un morceau finit ===
+wavesurfer.on('finish', function() {
+    // Trouve l'index du track courant
+    const currentSrc = wavesurfer.backend.media.src;
+    const currentIndex = playlist.findIndex(track => track.src === currentSrc);
 
-        if (currentIndex < playlist.length - 1) {
-            const nextTrack = playlist[currentIndex + 1];
-            wavesurfer.load(nextTrack.src);
-            if (currentTitleEl) currentTitleEl.textContent = nextTrack.title;
-            if (currentAlbumEl) currentAlbumEl.textContent = nextTrack.album;
-        }
-    });
+    // S'il y a un track suivant, charge-le
+    if (currentIndex !== -1 && currentIndex < playlist.length - 1) {
+        const nextTrack = playlist[currentIndex + 1];
+        wavesurfer.load(nextTrack.src);
 
-    // Optionnel : mettre à jour le titre quand on change de track manuellement
-    wavesurfer.on('play', function () {
-        const currentSrc = wavesurfer.backend.media.src;
-        const currentTrack = playlist.find(t => t.src === currentSrc);
-        if (currentTrack) {
-            if (currentTitleEl) currentTitleEl.textContent = currentTrack.title;
-            if (currentAlbumEl) currentAlbumEl.textContent = currentTrack.album;
-        }
-    });
+        // Optionnel : mettre à jour le titre et l'album affichés
+        document.getElementById('current-track-title').textContent = nextTrack.title || 'No Title';
+        document.getElementById('current-album').textContent = nextTrack.album || 'Jane Duke';
+    }
+});
 });
