@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jane Duke Music</title>
+  <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js"></script>
+  <style>
+    #waveform {
+      width: 100%;
+      height: 150px;
+      margin: 20px 0;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Audio Waveform Player</h1>
+  <div id="waveform"></div>
+
+  <script>
+    const wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: '#4F4A85',
+      progressColor: '#383351',
+      url: '/audio.mp3' // Replace with your audio file path
+    });
+
+    wavesurfer.on('ready', () => {
+      console.log('Audio loaded and ready to play.');
+    });
+
+    wavesurfer.on('interaction', () => {
+      wavesurfer.play(); // Auto-play on click
+    });
+  </script>
+</body>
+</html>   
