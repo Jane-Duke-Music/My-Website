@@ -1,84 +1,53 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jane Duke Music</title>
   <link rel="stylesheet" href="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.css"/>
-  <link rel="stylesheet" href="css/style.css"/>  <!-- crée ce fichier même vide au début -->
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
   <header>
-    <h1>Jane Duke</h1>
-    <p>Musique originale – The Origin of Evil</p>
+    <h1>Jane Duke Music</h1>
+    <p>Original Music By Jane Duke</p>
+
+    <div class="album-selector">
+      <label for="album-select">Chose Album:</label>
+      <select id="album-select">
+        <option value="origin">The Origin Of Evil - The Legend Of Narcissus And Oedipus</option>
+        <option value="infection">Infection</option>
+      </select>
+    </div>
   </header>
 
   <main>
-    <!-- Waveform + contrôles -->
+    <img id="album-cover" src="music/Jane_Duke/Album-Cover.png" alt="Album Cover" style="max-width: 280px; display: block; margin: 20px auto; border-radius: 8px;">
+
     <div id="waveform"></div>
 
     <div class="controls">
-      <button id="playPause">Play / Pause</button>
-      <span id="current-track">No Piece Chosen</span>
+      <button id="playPause">Play</button>
+      <span id="current-track">Chose A Track</Track></span>
     </div>
 
-    <!-- Liste des morceaux -->
     <ul id="playlist"></ul>
   </main>
 
-  <!-- Scripts -->
-  <script type="module">
-    import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+  <main>
+    <img id="album-cover" src="music/Jane_Duke/Infection.jpg" alt="Album Cover" style="max-width: 280px; display: block; margin: 20px auto; border-radius: 8px;">
 
-    const wavesurfer = WaveSurfer.create({
-      container: '#waveform',
-      waveColor: '#4F4A85',
-      progressColor: '#383351',
-      cursorColor: '#ddd',
-      barWidth: 3,
-      barRadius: 3,
-      responsive: true,
-      height: 120,
-      normalize: true
-    })
+    <div id="waveform"></div>
 
-    const playPauseBtn = document.getElementById('playPause')
-    playPauseBtn.onclick = () => wavesurfer.isPlaying() ? wavesurfer.pause() : wavesurfer.play()
+    <div class="controls">
+      <button id="playPause">Play</button>
+      <span id="current-track">Chose A Track</span>
+    </div>
 
-    const currentTrackEl = document.getElementById('current-track')
-    const playlistEl = document.getElementById('playlist')
+    <ul id="playlist"></ul>
+  </main>
 
-    // Charger la playlist JSON
-    fetch('playlists.json')
-      .then(res => res.json())
-      .then(tracks => {
-        tracks.forEach((track, index) => {
-          const li = document.createElement('li')
-          li.textContent = `${index + 1}. ${track.title || track.filename} – ${track.artist || 'Jane Duke'}`
-          li.onclick = () => {
-            wavesurfer.load(track.url)
-            currentTrackEl.textContent = track.title || track.filename
-            document.querySelectorAll('#playlist li').forEach(el => el.classList.remove('playing'))
-            li.classList.add('playing')
-          }
-          playlistEl.appendChild(li)
-        })
-
-        // Option : auto-load premier track
-        if (tracks.length > 0) {
-          wavesurfer.load(tracks[0].url)
-          currentTrackEl.textContent = tracks[0].title || tracks[0].filename
-          playlistEl.children[0].classList.add('playing')
-        }
-      })
-      .catch(err => {
-        playlistEl.innerHTML = '<li>Erreur de chargement de la playlist</li>'
-        console.error(err)
-      })
-
-    wavesurfer.on('play', () => playPauseBtn.textContent = 'Pause')
-    wavesurfer.on('pause', () => playPauseBtn.textContent = 'Play')
-  </script>
+  <script type="module" src="js/player.js"></script>
 </body>
 </html>
