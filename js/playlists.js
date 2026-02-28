@@ -1,69 +1,79 @@
-// === Playlist dynamique depuis HTML (pas besoin de hardcoder) ===
-document.addEventListener('DOMContentLoaded', function () {
-    // Récupère tous les <div> dans #playlist
-    const playlistItems = document.querySelectorAll('#playlist > div');
-    const playlist = [];
+// À mettre après WaveSurfer.create(...) et tes on('ready'), on('audioprocess'), etc.
 
-    // Construit l'array playlist
-    playlistItems.forEach(item => {
-        playlist.push({
-            src: item.getAttribute('data-src'),
-            title: item.getAttribute('data-title') || 'Sans titre',
-            album: item.getAttribute('data-album') || 'Jane Duke'
-        });
-    });
+// Fonction pour parser un .m3u / .m3u8 basique
+async function loadPlaylist(m3uUrl) {
+    try {
+        const response = await fetch('music-files/Jane_Duke/The-Origin-Of-Evil-(MP3 Edition)/The Origin Of Evil - The Legend Of Narcissus And Oedipus.m3u8');
+        if (!response.ok) throw new Error('Playlist non trouvée');
+        
+        const text = await response.text();
+        const lines = text.split('\n').map(line => line.trim()).filter(line => line);
 
-    // Si pas de tracks → on arrête
-    if (playlist.length === 0) {
-        console.warn("Aucun track trouvé dans #playlist");
-        return;
+        const tracks = [];
+        let pendingTitle = null;
+
+        for (let line of lines) {
+            if (line.startsWith('#EXTM3U')) continue; // header
+
+            if (line.startsWith('#EXTINF:')) {
+                // Ex: #EXTINF:180,Mon Titre
+                const parts = line.split(',', 2);
+                const duration = parseInt(parts[0].split(':')[1]) || 0;
+                pendingTitle = parts[1] || 'Track inconnu';
+            } else if (!line.startsWith('#')) {
+                // C'est l'URL du fichier audio
+                const title = pendingTitle || line.split('/').pop().replace('.mp3', '');
+                tracks.push({
+                    url: line.startsWith('http') ? line : line,  // si relatif, fetch le gérera
+                    title: title
+                });
+                pendingTitle = null;
+            }
+        }
+
+        return tracks;
+    } catch (err) {
+        console.error('Erreur chargement playlist:', err);
+        return [];
     }
+}
 
-    // === Charge le premier track ===
-    wavesurfer.load(playlist[0].src);
+// Utilisation : charge la playlist et crée la liste
+const playlistContainer = document.getElementById('playlist'); // <ul id="playlist"></ul> dans ton HTML
 
-    // Affiche le titre et l'album du premier track
-    const currentTitleEl = document.getElementById('current-track-title');
-    const currentAlbumEl = document.getElementById('current-album');
+loadAndDisplayPlaylist('music-files/Jane_Duke/Infection - Mp3/Infection.m3u8')  // ou '/assets/playlist.m3u8' selon où tu l'as mis
+    .then(tracks => {
+        if (tracks.length === 0) {
+            playlistContainer.innerHTML = '<li>Erreur : playlist vide ou introuvable</li>';
+            return;
+        }
 
-    if (currentTitleEl) currentTitleEl.textContent = playlist[0].title;
-    if (currentAlbumEl) currentAlbumEl.textContent = playlist[0].album;
+        playlistContainer.innerHTML = ''; // vide l’ancien contenu
 
-    // === Gestion de la fin d'un track → passe au suivant ===
-    wavesurfer.on('finish', function () {
-        // Récupère la source actuelle du média (attention : peut être un blob URL)
-        const currentMediaSrc = wavesurfer.backend.media.currentSrc || wavesurfer.backend.media.src;
+        tracks.forEach((track, index) => {
+            const li = document.createElement('li');
+            li.textContent = `${index + 1}. ${track.title}`;
+            li.dataset.trackUrl = track.url;
+            li.classList.add('track-item');
+            li.addEventListener('click', function () {
+                // Highlight
+                document.querySelectorAll('#playlist .track-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
 
-        // Trouve l'index du track courant en comparant les src originaux
-        const currentIndex = playlist.findIndex(track => currentMediaSrc.includes(track.src));
+                // Charge et joue
+                wavesurfer.load(this.dataset.trackUrl);
+                wavesurfer.once('ready', () => {
+                    wavesurfer.play();
+                });
+            });
+            playlistContainer.appendChild(li);
+        });
 
-        // S'il y a un track suivant
-        if (currentIndex !== -1 && currentIndex < playlist.length - 1) {
-            const nextTrack = playlist[currentIndex + 1];
-
-            // Charge le suivant
-            wavesurfer.load(nextTrack.src);
-
-            // Met à jour l'affichage
-            if (currentTitleEl) currentTitleEl.textContent = nextTrack.title;
-            if (currentAlbumEl) currentAlbumEl.textContent = nextTrack.album;
-
-            console.log(`Passage au track suivant : ${nextTrack.title}`);
-        } else {
-            console.log("Fin de la playlist");
-            // Optionnel : boucle ou stop
-            // wavesurfer.load(playlist[0].src); // pour boucle
+        // Charge et joue la première piste automatiquement
+        if (tracks.length > 0) {
+            const firstLi = playlistContainer.querySelector('li');
+            firstLi.classList.add('active');
+            wavesurfer.load(firstLi.dataset.trackUrl);
+            // wavesurfer.once('ready', () => wavesurfer.play());  ← décommente si auto-play au chargement page
         }
     });
-
-    // Optionnel : mise à jour du titre quand on change manuellement de track
-    wavesurfer.on('play', function () {
-        const currentMediaSrc = wavesurfer.backend.media.currentSrc || wavesurfer.backend.media.src;
-        const currentTrack = playlist.find(track => currentMediaSrc.includes(track.src));
-
-        if (currentTrack) {
-            if (currentTitleEl) currentTitleEl.textContent = currentTrack.title;
-            if (currentAlbumEl) currentAlbumEl.textContent = currentTrack.album;
-        }
-    });
-});
