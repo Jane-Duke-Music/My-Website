@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    async function loadPlaylist(m3uPath = 'music/Jane_Duke/The-Origin-Of-Evil-MP3-Edition/playlist-origin.m3u8') {   // ← change ici selon ton nom final
+    async function loadPlaylist(m3uPath = 'music/Jane_Duke/The-Origin-Of-Evil-MP3-Edition/playlist-origin.txt') {   // ← change ici selon ton nom final
         console.log(`[Playlist] Début chargement depuis : ${m3uPath}`);
 
         try {
@@ -78,5 +78,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Lance le chargement
-    loadPlaylist('music/Jane_Duke/The-Origin-Of-Evil-MP3-Edition/playlist-origin.m3u8');   // ou loadPlaylist('/chemin/exact/playlist-origin.m3u8');
+    loadPlaylist('music/Jane_Duke/The-Origin-Of-Evil-MP3-Edition/playlist-origin.txt');   // ou loadPlaylist('/chemin/exact/playlist-origin.m3u8');
 });
