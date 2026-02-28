@@ -2,14 +2,16 @@
 
 var wavesurfer = WaveSurfer.create({
     container: '#audiowave',
-    waveColor: '#d0d7db',
-    progressColor: '#9ca1a4',
-    barWidth: 2,
+    waveColor: '#6b0a0a',       // rouge sombre
+    progressColor: '#d40707',   // rouge plus vif
+    cursorColor: '#000000',
+    barWidth: 3,
     barGap: 1,
-    cursor:false,
-    cursorWidth: 0,
-    height: 80,
-    barHeight: 0.7,
+    cursor: true,
+    cursorWidth: 2,
+    height: 110,
+    barHeight: 0.9,
+    backgroundColor: '#111111'
 });
 
 wavesurferInit(wavesurfer);
