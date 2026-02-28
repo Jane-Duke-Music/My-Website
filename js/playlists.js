@@ -51,15 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const li = document.createElement('li');
                 li.textContent = `${i + 1}. ${track.title}`;
                 li.dataset.trackUrl = track.url;
+                li.dataset.trackTitle = track.title;
                 li.classList.add('track-item');
-                li.style.cursor = 'pointer';
-                li.addEventListener('click', () => {
-                    document.querySelectorAll('#playlist li').forEach(el => el.classList.remove('active'));
-                    li.classList.add('active');
-                    document.getElementById('current-track-title').textContent = track.title;
-                    wavesurfer.load(track.url);
-                    wavesurfer.once('ready', () => wavesurfer.play());
-                });
                 playlistEl.appendChild(li);
             });
 

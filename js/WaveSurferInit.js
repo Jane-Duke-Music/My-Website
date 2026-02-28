@@ -48,12 +48,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Gestion des clics sur les tracks (la partie manquante !)
-    const trackElements = document.querySelectorAll('[data-track-url]'); // ou '#playlist li', '.track-item', etc.
+    const trackElements = document.querySelectorAll('#playlist li[data-track-url]');
 
     trackElements.forEach(trackEl => {
         trackEl.addEventListener('click', function () {
-            const url = this.dataset.trackUrl; // data-track-url="https://...mp3"
+            const url = this.dataset.trackUrl;
+            const title = this.dataset.trackTitle;
             if (!url) return;
+
+            document.getElementById('current-track-title').textContent = title;
 
             // Highlight le track sélectionné
             trackElements.forEach(el => el.classList.remove('active'));
@@ -70,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Load initial : première piste (comme avant)
-    const initialTrack = document.querySelector('[data-track-url]');
+    const initialTrack = document.querySelector('#playlist li[data-track-url]');
     if (initialTrack) {
         initialTrack.classList.add('active');
         const initialUrl = initialTrack.dataset.trackUrl;
