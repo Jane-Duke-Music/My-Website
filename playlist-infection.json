@@ -1,0 +1,74 @@
+[
+{
+    "url": "./music/Jane_Duke/1 - Deep Space Melancholy.mp3",
+    "filename": "1 - Deep Space Melancholy.mp3",
+    "title": "Deep Space Melancholy",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 189.024
+},
+{
+    "url": "./music/Jane_Duke/2 - Aether Keys.mp3",
+    "filename": "2 - Aether Keys.mp3",
+    "title": "Aether Keys",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 205.032
+},
+{
+    "url": "./music/Jane_Duke/3 - Bells Of Heaven.mp3",
+    "filename": "3 - Bells Of Heaven.mp3",
+    "title": "Bells Of Heaven",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 267.024
+  },
+  {
+    "url": "./music/Jane_Duke/4 - Time.mp3",
+    "filename": "4 - Time.mp3",
+    "title": "Time",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 211.032
+  },
+  {
+    "url": "./music/Jane_Duke/5 - Insecure Skies.mp3",
+    "filename": "5 - Insecure Skies.mp3",
+    "title": "Insecure Skies",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 74.04
+  },
+  {
+    "url": "./music/Jane_Duke/6 - Insane Arpeggios.mp3",
+    "filename": "6 - Insane Arpeggios.mp3",
+    "title": "Insane Arpeggios",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 270.12
+  },
+  {
+    "url": "./music/Jane_Duke/7 - Drunken Robot Music.mp3",
+    "filename": "7 - Drunken Robot Music.mp3",
+    "title": "Drunken Robot Music",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 172.848
+  },
+  {
+    "url": "./music/Jane_Duke/8 - Cyberpunk Racing.mp3",
+    "filename": "8 - Cyberpunk Racing.mp3",
+    "title": "Cyberpunk Racing",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 173.472
+  },
+  {
+    "url": "./music/Jane_Duke/9 - Infection.mp3",
+    "filename": "9 - Infection.mp3",
+    "title": "Infection",
+    "artist": "Jane Duke",
+    "album": "Infection",
+    "duration": 126.84
+  }
+]

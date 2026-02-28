@@ -1,0 +1,24 @@
+{
+  "name": "my-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jane-Duke-Music/My-Website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Jane-Duke-Music/My-Website/issues"
+  },
+  "homepage": "https://github.com/Jane-Duke-Music/My-Website#readme",
+  "dependencies": {
+    "music-metadata": "^11.12.1"
+  }
+}

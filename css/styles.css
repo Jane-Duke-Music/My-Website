@@ -1,0 +1,7 @@
+body { font-family: sans-serif; background: #111; color: #eee; margin: 0; padding: 20px; }
+#waveform { margin: 20px 0; background: #222; }
+.controls { text-align: center; margin: 20px 0; }
+button { padding: 12px 24px; font-size: 1.2em; cursor: pointer; }
+#playlist { list-style: none; padding: 0; }
+#playlist li { padding: 12px; cursor: pointer; border-bottom: 1px solid #333; }
+#playlist li.playing { background: #4F4A85; }
