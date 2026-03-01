@@ -5,7 +5,8 @@
     "title": "Deep Space Melancholy",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 189.024
+    "duration": 189.024,
+    "cover": "music/Jane_Duke/Infection.jpg"
 },
 {
     "url": "./music/Jane_Duke/2 - Aether Keys.mp3",
@@ -13,7 +14,8 @@
     "title": "Aether Keys",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 205.032
+    "duration": 205.032,
+    "cover": "music/Jane_Duke/Infection.jpg"
 },
 {
     "url": "./music/Jane_Duke/3 - Bells Of Heaven.mp3",
@@ -21,7 +23,8 @@
     "title": "Bells Of Heaven",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 267.024
+    "duration": 267.024,
+    "cover": "music/Jane_Duke/Infection.jpg"
   },
   {
     "url": "./music/Jane_Duke/4 - Time.mp3",
@@ -29,7 +32,8 @@
     "title": "Time",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 211.032
+    "duration": 211.032,
+    "cover": "music/Jane_Duke/Infection.jpg"
   },
   {
     "url": "./music/Jane_Duke/5 - Insecure Skies.mp3",
@@ -37,7 +41,8 @@
     "title": "Insecure Skies",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 74.04
+    "duration": 74.04,
+    "cover": "music/Jane_Duke/Infection.jpg"
   },
   {
     "url": "./music/Jane_Duke/6 - Insane Arpeggios.mp3",
@@ -45,7 +50,8 @@
     "title": "Insane Arpeggios",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 270.12
+    "duration": 270.12,
+    "cover": "music/Jane_Duke/Infection.jpg"
   },
   {
     "url": "./music/Jane_Duke/7 - Drunken Robot Music.mp3",
@@ -53,7 +59,8 @@
     "title": "Drunken Robot Music",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 172.848
+    "duration": 172.848,
+    "cover": "music/Jane_Duke/Infection.jpg"
   },
   {
     "url": "./music/Jane_Duke/8 - Cyberpunk Racing.mp3",
@@ -61,7 +68,8 @@
     "title": "Cyberpunk Racing",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 173.472
+    "duration": 173.472,
+    "cover": "music/Jane_Duke/Infection.jpg"
   },
   {
     "url": "./music/Jane_Duke/9 - Infection.mp3",
@@ -69,6 +77,7 @@
     "title": "Infection",
     "artist": "Jane Duke",
     "album": "Infection",
-    "duration": 126.84
+    "duration": 126.84,
+    "cover": "music/Jane_Duke/Infection.jpg"
   }
 ]

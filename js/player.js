@@ -5,15 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Création de l'instance WaveSurfer
   const wavesurfer = WaveSurfer.create({
     container: '#waveform',
-    waveColor: '#4a4a8c',
-    progressColor: '#7f7fd5',
-    cursorColor: '#ddd',
+    waveColor: '#4e0202',
+    progressColor: '#880000',
+    cursorColor: '#b47302',
     barWidth: 3,
     barRadius: 3,
     responsive: true,
     height: 100,
     normalize: true,
-    backend: 'WebAudio' // ou 'MediaElement' si tu préfères
+    backend: 'WebAudio'
   })
 
   // Éléments DOM
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadPlaylist(playlistFile) {
     try {
       const res = await fetch(playlistFile)
-      if (!res.ok) throw new Error('Playlist non trouvée')
+      if (!res.ok) throw new Error(`Playlist non trouvée : ${playlistFile}`)
       currentTracks = await res.json()
 
       playlistEl.innerHTML = '' // vide l'ancienne liste
@@ -42,18 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
         playlistEl.appendChild(li)
       })
 
-      // Charge le premier track automatiquement
+      // Optionnel : précharge le premier track (waveform visible, mais pas de lecture auto)
       if (currentTracks.length > 0) {
-        playTrack(0)
+        wavesurfer.load(currentTracks[0].url)
+        currentTrackEl.textContent = currentTracks[0].title
+        playlistEl.children[0].classList.add('playing')
       }
 
-      // Met à jour la cover (prend celle du premier track, ou fixe par album si tu veux)
-      if (currentTracks[0]?.cover) {
+      // Met à jour la cover du premier track
+      if (currentTracks[0]?.cover && albumCoverEl) {
         albumCoverEl.src = currentTracks[0].cover
         albumCoverEl.style.display = 'block'
       }
     } catch (err) {
-      console.error(err)
+      console.error('Erreur loadPlaylist:', err)
       playlistEl.innerHTML = '<li style="color: #ff5555;">Erreur : impossible de charger la playlist</li>'
     }
   }
@@ -66,12 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
     wavesurfer.load(track.url)
     currentTrackEl.textContent = track.title
 
-    // Highlight le track sélectionné
+    // Highlight
     document.querySelectorAll('#playlist li').forEach(el => el.classList.remove('playing'))
-    playlistEl.children[index].classList.add('playing')
+    playlistEl.children[index]?.classList.add('playing')
 
-    // Option : change la cover si chaque track en a une différente
-    if (track.cover) albumCoverEl.src = track.cover
+    if (albumCoverEl && track.cover) {
+      albumCoverEl.src = track.cover
+    }
   }
 
   // Contrôles play/pause
@@ -85,21 +88,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  // Événements WaveSurfer
-  wavesurfer.on('play', () => playPauseBtn.textContent = 'Pause')
-  wavesurfer.on('pause', () => playPauseBtn.textContent = 'Play')
-  wavesurfer.on('ready', () => {
-    // Option : auto-play au chargement du premier track
-    // wavesurfer.play()
-  })
+  // Événements WaveSurfer de base
+  wavesurfer.on('finish', () => {
+  wavesurfer.seekTo(0);
 
+  const currentLi = document.querySelector('#playlist li.playing');
+  if (!currentLi) return;
+
+  const currentIndex = parseInt(currentLi.dataset.index || '0', 10);
+  const nextIndex = currentIndex + 1;
+
+  if (nextIndex < currentTracks.length) {
+    currentLi.classList.remove('playing');
+
+    const nextTrack = currentTracks[nextIndex];
+
+    // Highlight + scroll
+    if (playlistEl.children[nextIndex]) {
+      playlistEl.children[nextIndex].classList.add('playing');
+      playlistEl.children[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Charge et joue dès que prêt
+    wavesurfer.once('ready', () => {
+      wavesurfer.play();
+      currentTrackEl.textContent = nextTrack.title;
+
+      if (albumCoverEl && nextTrack.cover) {
+        albumCoverEl.src = nextTrack.cover;
+      }
+    });
+
+    wavesurfer.load(nextTrack.url);
+  }
+});
   // Changement d'album
+  const albumData = {
+    origin: {
+      file:  'playlist-origin.json',
+      cover: 'music/Jane_Duke/Album-Cover.png'
+    },
+    infection: {
+      file:  'playlist-infection.json',
+      cover: 'music/Jane_Duke/Infection.jpg'
+    }
+  }
+
   albumSelect.addEventListener('change', () => {
     const selected = albumSelect.value
-    const file = selected === 'infection' ? 'playlist-infection.json' : 'playlist-origin.json'
-    loadPlaylist(file)
+    const data = albumData[selected] || albumData.origin
+
+    if (albumCoverEl) {
+      albumCoverEl.src = data.cover
+    }
+
+    loadPlaylist(data.file)
   })
 
-  // Charge l'album par défaut au démarrage (Origin Of Evil)
-  loadPlaylist('playlist-origin.json')
+  // Charge par défaut
+  const initialValue = albumSelect.value || 'origin' // sécurité si value pas définie
+  const initialData = albumData[initialValue] || albumData.origin
+
+  if (albumCoverEl) {
+    albumCoverEl.src = initialData.cover
+  }
+
+  loadPlaylist(initialData.file)
 })

@@ -30,7 +30,11 @@ header p {
   font-style: italic;
   font-size: 1.2em;
 }
-
+li {
+  color:#da8b14;
+  margin: 5px 0;
+  padding: 2px;
+}
 main {
   background: rgba(0, 0, 0, 0.45);
   padding: 20px;
