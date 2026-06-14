@@ -1,244 +1,415 @@
-/* Fond global sombre inspiré de la cover */
+/* ====================== RESET & GLOBAL ====================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background: radial-gradient(
-    ellipse at center,          /* forme elliptique centrée */
-    #3a0000 0%,                 /* rouge sombre au centre */
-    #2a0000 30%,                /* transition progressive */
-    #100000 60%,                /* presque noir */
-    #000000 100%                /* noir absolu aux bords */
-  );
-  background-attachment: fixed; /* pour que le dégradé reste fixe au scroll (optionnel mais immersif) */
-  font-family: 'Libre Baskerville', serif;
-  margin: 0;
-  padding: 20px;
-  min-height: 100vh;
+    background: radial-gradient(
+        ellipse at center,
+        #3a0000 0%,      /* Rouge sang au centre */
+        #2a0000 25%,
+        #1a0000 45%,
+        #0f0000 65%,
+        #000000 100%      /* Noir vers l'extérieur */
+    );
+    background-attachment: fixed;
+    color: #d4af37;               /* Doré principal pour tous les textes */
+    font-family: 'Libre Baskerville', serif;
+    line-height: 1.7;
+    min-height: 100vh;
+    text-align: center !important;
+    margin-top: 25px;
 }
 
-/* Header */
+/* ====================== HEADER ====================== */
 header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-h1 {
-  color: #da8b14;          /* doré pour le nom */
-  font-size: 3em;
-  margin: 0.3em 0;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* glow subtil doré */
+    text-align: center;
+    padding: 10px 20px 5px;
+    border-bottom: 10px solid #000000;
 }
 
-h2 {
-  color: #da8b14;          /* doré pour le nom */
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* glow subtil doré */
+.logo-rrr {
+    height: 130px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 25px rgba(245, 201, 106, 0.8));
 }
 
-h3 {
-  color: #da8b14;          /* doré pour le nom */
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* glow subtil doré */
+/* Titres principaux */
+.main-title {
+    font-size: 3.9em;
+    color: #cd900c;
+    text-shadow: 0 0 20px rgba(247, 183, 46, 0.6);
+    margin-bottom: 10px;
+    letter-spacing: 3px;
 }
 
-header p {
-  color: #c69b01;
-  font-style: italic;
-  font-size: 1.2em;
+.subtitle {
+    font-size: 2.2em;
+    color: #e5cd15;
+    margin-bottom: 15px;
+    font-style: italic;
+    text-shadow: 0 0 15px rgba(217, 147, 26, 0.4);
 }
 
-.mages-guild-manifesto {
-  max-width: 100%;                  /* responsive */
-  height: auto;
-  width: 450px;                     /* ajuste à ta guise : 500px, 700px, etc. */
-  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));  /* halo noir subtil pour matcher le bouton */
-  transition: transform 0.4s ease;
-  margin-bottom: 20px;
+/* ====================== NAVIGATION ====================== */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.mages-guild-manifesto:hover {
-  transform: scale(1.03);           /* petit zoom au survol, très discret */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-li {
-  color:#da8b14;
-  margin: 5px 0;
-  padding: 2px;
+.main-nav a {
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 1.18em;
+    padding: 12px 22px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: #ffd700;
+    background: #4a1f1f;
+    border-color: #d4af37;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+/* ====================== MAIN CONTENT ====================== */
 main {
-  background: rgba(0, 0, 0, 0.45);
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 1000px;
-  margin: 40px auto;
-  text-align: center;
+    max-width: 920px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-main p {
-  color:#d4af37
+.content {
+    background: rgba(25, 8, 8, 0.85);
+    border: 2px solid #5c1f1f;
+    border-radius: 10px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
 }
 
+.manifesto {
+    max-width: 780px;
+    margin: 30px auto;
+    font-size: 1.12em;
+    line-height: 1.75;
+    color: #e8c88a;
+    text-align: justify; /* ou center si tu préfères */
+}
+
+/* Boutons */
 .wav-button {
-  display: inline-block;
-  margin: 15px auto;
-  padding: 12px 28px;
-  background: #4a0000;
-  color: #d4af37;
-  border: 2px solid #d4af37;
-  border-radius: 6px;
-  text-decoration: none;
-  font-family: 'Libre Baskerville', serif;
-  font-weight: bold;
-  font-size: 1.2em;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  position: relative; /* important pour le pseudo-élément glow */
-
-  /* Halo noir de base (très prononcé comme tu l'as ajusté) */
-  box-shadow: 
-    0 0 6px 2px rgba(0, 0, 0, 0.4),
-    0 0 18px 6px rgba(0, 0, 0, 0.85),
-    0 0 35px 12px rgba(0, 0, 0, 0.95),
-    0 0 60px 20px rgba(0, 0, 0, 0.7);
-
-  /* Animation pulsation lente sur le halo noir */
-  animation: pulse-halo 2s infinite ease-in-out;
+    display: inline-block;
+    margin: 25px 12px;
+    padding: 18px 42px;
+    background: #4a1f1f;
+    color: #f5d68a;
+    border: 3px solid #b38b4d;
+    border-radius: 6px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 18px rgba(181, 139, 77, 0.6);
 }
 
-/* L'animation pulsation (ralentie à 6 secondes pour être très calme) */
-@keyframes pulse-halo {
-  0%, 100% {
-    box-shadow: 
-      0 0 6px 2px rgba(0, 0, 0, 0.4),
-      0 0 18px 6px rgba(0, 0, 0, 0.85),
-      0 0 35px 12px rgba(0, 0, 0, 0.95),
-      0 0 60px 20px rgba(0, 0, 0, 0.7);
-  }
-  50% {
-    box-shadow: 
-      0 0 8px 3px rgba(0, 0, 0, 0.5),
-      0 0 22px 8px rgba(0, 0, 0, 0.92),
-      0 0 42px 16px rgba(0, 0, 0, 0.97),
-      0 0 75px 28px rgba(0, 0, 0, 0.8); /* halo extérieur plus large et intense au pic */
-  }
+.wav-button:hover {
+    background: #6b2a2a;
+    color: #ffeb9e;
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
 }
 
-/* Hover : on garde la pulsation + on ajoute le glow doré */
-.wav-button:hover,
-.wav-button:focus {
-  background: #5c0f0f;
-  color: #e8c547;
-  transform: translateY(-2px);
-
-  box-shadow: 
-    0 0 6px 2px rgba(0, 0, 0, 0.4),
-    0 0 18px 6px rgba(0, 0, 0, 0.85),
-    0 0 15px 15px rgba(212, 175, 55, 0.6);
-
-  /* On conserve la pulsation (l'animation continue) */
-  animation: pulse-glow-gold 1s infinite ease-in-out;
-}
-  @keyframes pulse-glow-gold {
-  0%, 100% {
-    box-shadow: 
-      0 0 6px 2px rgba(0, 0, 0, 0.4),
-      0 0 18px 6px rgba(0, 0, 0, 0.85),
-      0 0 25px 12px rgba(212, 175, 55, 0.24);
-  }
-  50% {
-    box-shadow:
-      0 0 8px 3px rgba(0, 0, 0, 0.5), 
-      0 0 22px 8px rgba(0, 0, 0, 0.92),
-      0 0 30px 16px rgba(212, 175, 55, 0.36);  /* pic très doux */
-  }
+/* Textes descriptifs */
+p, .manifesto {
+    color: #d4bd0c;
+    font-size: 1.1em;
+    max-width: 780px;
+    margin: 25px auto;
+    text-align: left;
 }
 
-/* Selecteur d'album */
-.album-selector {
-  margin: 25px 0;
-}
-label {
-  color: #d4af37;
-  font-weight: 700;
-}
-select {
-  background: #1a0000;     /* rouge-noir sombre */
-  color: #e8d9c5;
-  border: 1px solid #4a0000;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-family: 'Libre Baskerville', serif;
-}
-select:focus {
-  outline: none;
-  border-color: #d4af37;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+h2, h3 {
+    color: #ee770e;
+    text-shadow: 0 0 12px rgba(245, 201, 106, 0.4);
+    margin: 25px auto;
 }
 
-/* Cover album */
-#album-cover {
-  max-width: 320px;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(74, 0, 0, 0.6); /* ombre rouge sombre */
-  border: 2px solid #4a0000;
-  transition: transform 0.3s ease;
-}
-#album-cover:hover {
-  transform: scale(1.03);
-}
-
-/* Waveform */
-#waveform {
-  background: #0f0000;     /* noir-rouge très sombre */
-  border-radius: 8px;
-  box-shadow: inset 0 0 20px rgba(74, 0, 0, 0.5);
-}
-
-/* Contrôles */
-.controls {
-  margin: 25px 0;
-}
-button#playPause {
-  background: #4a0000;     /* rouge sombre */
-  color: #d4af37;          /* doré pour le texte */
-  border: 1px solid #d4af37;
-  padding: 14px 32px;
-  font-size: 1.3em;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-button#playPause:hover {
-  background: #5c0f0f;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-}
-#current-track {
-  color: #d4af37;
-  font-size: 1.4em;
-  margin-left: 20px;
+/* ====================== RESPONSIVE ====================== */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.9em;
+    }
+    
+    .subtitle {
+        font-size: 1.75em;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .logo-rrr {
+        height: 90px;
+    }
+    
+    .main-nav a {
+        padding: 10px 16px;
+        font-size: 1.05em;
+    }
 }
 
-/* Playlist */
-#playlist {
-  max-width: 700px;
-  margin: 0 auto;
+/* ====================== ARTISTS PAGE ====================== */
+.artists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
 }
-#playlist li {
-  background: #100000;
-  margin: 8px 0;
-  padding: 14px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  border-left: 4px solid #4a0000;
-  transition: all 0.25s;
+
+.artist-card {
+    text-align: center;
+    background: rgba(40, 10, 10, 0.6);
+    border: 2px solid #5c1f1f;
+    border-radius: 12px;
+    padding: 25px 20px;
+    transition: all 0.4s ease;
 }
-#playlist li:hover {
-  background: #1a0000;
-  border-left-color: #d4af37;
+
+.artist-card:hover {
+    transform: translateY(-10px);
+    border-color: #d4af37;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
 }
-#playlist li.playing {
-  background: #2a0000;
-  border-left-color: #d4af37;
-  color: #fff;
-  box-shadow: 0 0 12px rgba(74, 0, 0, 0.7);
+
+.artist-photo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #b38b4d;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
 }
-#playlist li span {
-  color: #a89f8f;
-  font-weight: bold;
+
+.artist-link {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+.artist-link:hover .artist-photo {
+    border-color: #ffd700;
+    transform: scale(1.05);
+}
+
+.artist-name {
+    color: #f5c96a;
+    font-size: 1.8em;
+    margin: 15px 0 8px 0;
+}
+
+.artist-description {
+    color: #e8c88a;
+    font-style: italic;
+    margin: 0;
+}
+
+/* ====================== JANE DUKE PAGE ====================== */
+.artist-hero {
+    text-align: center;
+    margin: 30px 0 50px;
+}
+
+.artist-main-photo {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #b38b4d;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+}
+
+.bio {
+    max-width: 780px;
+    margin: 0 auto 60px;
+    text-align: left;
+}
+
+.bio h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    color: #f5c96a;
+}
+
+.bio p {
+    font-size: 1.12em;
+    line-height: 1.85;
+    margin-bottom: 22px;
+    color: #e8c88a;
+}
+
+/* Social Links */
+.social-links {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 2px solid #4a1f1f;
+}
+
+.social-links h3 {
+    color: #f5c96a;
+    margin-bottom: 25px;
+}
+
+.social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* ====================== DISCOGRAPHY PAGE ====================== */
+.discography-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.album-card {
+    text-align: center;
+    background: rgba(40, 10, 10, 0.7);
+    border: 2px solid #5c1f1f;
+    border-radius: 12px;
+    padding: 30px 25px;
+    transition: all 0.4s ease;
+}
+
+.album-card:hover {
+    transform: translateY(-12px);
+    border-color: #d4af37;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+}
+
+.album-cover {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #b38b4d;
+    margin-bottom: 25px;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.album-link {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+.album-link:hover .album-cover {
+    transform: scale(1.06);
+    border-color: #ffd700;
+}
+
+.album-card h3 {
+    color: #f5c96a;
+    font-size: 1.65em;
+    margin: 15px 0 5px 0;
+}
+
+.album-card h4 {
+    color: #e8b55d;
+    font-size: 1.25em;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.album-info {
+    color: #d4af37;
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+/* ====================== ALBUM PAGE - Améliorations ====================== */
+.album-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+.album-hero {
+    text-align: center;
+    margin: 40px 0 50px;
+}
+
+.album-cover-large {
+    max-width: 340px;
+    width: 100%;
+    border-radius: 12px;
+    border: 6px solid #b38b4d;
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.5);
+}
+
+.youtube-embed {
+    max-width: 860px;
+    margin: 45px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.85);
+}
+
+.album-description {
+    max-width: 820px;
+    margin: 60px auto;
+    text-align: center;
+    font-size: 1.08em;
+    line-height: 1.85;
+}
+
+.album-description h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 2.3em;
+}
+
+.album-description h3 {
+    text-align: center;
+    color: #f5c96a;
+    margin: 45px 0 18px 0;
+    font-size: 1.45em;
+}
+
+.album-description p {
+    text-align: center;
+    margin-bottom: 22px;
 }
