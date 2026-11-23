@@ -413,3 +413,11 @@ h2, h3 {
     text-align: center;
     margin-bottom: 22px;
 }
+
+.Story-Manuscript {
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 12px;
+    border: 6px solid #b38b4d;
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.5);
+}
